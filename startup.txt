@@ -1,0 +1,5 @@
+Setup your .env file with a proper mongoose database connection
+
+npm install
+
+npm start
