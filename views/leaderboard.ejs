@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/lb.css">
+</head>
+<body>
+
+  <h2>
+    <%- include('templates/header.ejs'); %>
+  </h2>
+
+  <h1><%= season %> <%= year %> Leaderboard</h1>
+
+
+  <!-- Dropdown for previous leaderboards -->
+  <div id="previous-years">
+    <div class="year">
+    <% filteredSeasons.forEach(season => { %>
+      <a href="/leaderboard?year=<%= season.year %>&semester=<%= season.semester %>" class="previous-leaderboard-box">
+        <%= season.semester == '1' ? 'Spring' : 'Fall' %> <%= season.year %> Leaderboard
+      </a>
+    <% }); %>
+    </div>
+  </div>
+  
+  
+
+
+
+
+
+  <h3>Click on a player to view their profile</h3>
+
+
+
+  <div class="lb">
+    <% let rank = 1; %>
+    <% players.forEach(player => { %>
+      <div class="rows">
+        <p class="names"><%= rank %>.     
+          <a href="/profile/<%= encodeURIComponent(player.name) %>?year=<%= year %>&semester=<%= season %>" class="text">
+          <%= player.name %></a></p>
+        <p class="ratings"> <%= Math.round(player.rating) %></p>
+      </div>
+      <% rank++; %>
+    <% }); %>
+    
+  </div>
+
+  
+
+</body>
+</html>

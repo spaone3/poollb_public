@@ -1,0 +1,66 @@
+!<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superlatives</title>
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/superlatives.css">
+</head>
+<body>
+
+  <h2>
+    <%- include('templates/header.ejs'); %>
+  </h2>
+
+  <h1 class="top">
+    Superlatives
+  </h1>
+  
+  <div class="boxes">
+  <div class="box">
+    <div class="title">
+      Most Matches Played
+    </div>
+    <ol class="players">
+      <% mostMatches.forEach(player=> { %>
+      <li class="rank">
+        <%= player._id %>: <%= player.totalGamesPlayed %>
+      </li>
+      <% }); %>
+    </ol>
+  </div>
+
+  <div class="box">
+    <div class="title">
+      Biggest Rivalries
+    </div>
+    <ol class="players">
+      <% rivalries.forEach(player=> { %>
+      <li class="rank">
+        <%= player.players[0] %> is <%= player.Wins %>-<%= player.Losses %> vs <%= player.players[1]%>
+      </li>
+      <% }); %>
+    </ol>
+  </div>
+
+  <div class="box">
+    <div class="title">
+      Biggest Upsets
+    </div>
+
+    <ol class="players">
+      <% topUpsets.forEach(player=> { %>
+      <li class="rank">
+        <%= player.Winners %> (<%= Math.round(player.WinnerElos) %>) gained <%= Math.round(player.ratingChange) %> vs <%= player.Losers %> (<%= Math.round(player.LoserElos) %>)%>
+      </li>
+      <% }); %>
+
+    </ol>
+  </div>
+  </div>
+
+
+</body>
+
+</html>

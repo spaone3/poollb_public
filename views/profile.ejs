@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>playerId</title>
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/profile.css">
+
+</head>
+<body>
+
+  <h2>
+    <%- include('templates/header.ejs'); %>
+  </h2>
+
+  
+  <h1><%= player.name %></h1>
+
+  <div class="row2">
+    <p class="flex-item rating">Rating: <%= Math.round(player.rating) %></p>
+    <p class="flex-item">Record:  <%= wins %> - <%= losses %> </p>
+  </div>
+
+  <h1 class="matchHistory">Match history</h1>
+  
+  
+  
+  <% matches.forEach(function(match) { %>
+    <% if (match.mode == '1v1') { %>
+      
+      <div class="match-box <% if (match.Winners.includes(player.name)) { %>highlight<% } %>">
+        <div class="top">
+          <p class="match-item left top">Winner: <%= match.Winners %> (<%= Math.round(match.WinnerElos) %>)</p>
+          <p class="match-item right top">Rating Change: <%= Math.round(match.ratingChange) %></p>
+        </div>
+        <div class="bottom">
+          <p class="match-item left">Loser: <%= match.Losers %> (<%= Math.round(match.LoserElos) %>)</p>
+          <p class="match-item right">
+            Date: <%= (new Date(match.timestamp).toLocaleString('en-US', {
+              timeZone: 'America/Chicago',
+              year: 'numeric', 
+              month: '2-digit', 
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit'
+            })) %>
+          </p>
+        </div>
+      </div>
+
+
+
+    <% } else { %>
+
+      <div class="match-box <% if (match.Winners.includes(player.name)) { %>highlight<% } %>">
+
+        <div class="top">
+          <div class="winners">
+              <p class="winners-text">Winners: </p>
+            <div class="right">
+              <p class="match-item left top"><%= match.Winners[0] %> (<%= Math.round(match.WinnerElos[0]) %>)</p>
+              <p class="match-item left top bottom"><%= match.Winners[1] %> (<%= Math.round(match.WinnerElos[1]) %>)</p>
+            </div>
+          </div>
+          <p class="match-item right top">Rating Change: <%= Math.round(match.ratingChange) %></p>
+        </div>
+
+        <div class="bottom">
+          <div class="winners">
+              <p class="losers-text">Losers:  </p>
+            <div class="right">
+              <p class="match-item left top"><%= match.Losers[0] %> (<%= Math.round(match.LoserElos[0]) %>)</p>
+              <p id="helplol" class="match-item left top bottom"><%= match.Losers[1] %> (<%= Math.round(match.LoserElos[1]) %>)</p>
+            </div>
+          </div>
+          <p class="match-item right">
+            Date: <%= (new Date(match.timestamp).toLocaleString('en-US', {
+              timeZone: 'America/Chicago',
+              year: 'numeric', 
+              month: '2-digit', 
+              day: '2-digit',
+              hour: '2-digit',
+              minute: '2-digit'
+            })) %>
+          </p>      
+          </div>
+        
+      </div>
+
+
+    <% } %>
+  <% }); %>
+
+
+
+
+</body>
+</html>
+
+
+<!--
+
+
+-->
+
+<!--
+Name
+ELO
+Record
+matches played
+Match history
+
+-->

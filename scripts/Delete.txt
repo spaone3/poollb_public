@@ -1,0 +1,8 @@
+To delete a game, type
+curl -X DELETE http://localhost:3030/delete/:gameid
+
+into a command prompt.
+
+curl -X DELETE http://localhost:3000/delete/64fe8e791ff43e67d20acb85
+
+

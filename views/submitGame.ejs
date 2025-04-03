@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Match</title>
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+<body>
+
+  //FOR CUSTOM POPUP MESSAGE
+  <div id="custom-popup" class="popup">
+    <div class="popup-content">
+      <span class="close-popup" onclick="closeCustomPopup()">&times;</span>
+      <p id="popup-message"></p>
+    </div>
+  </div>
+
+  <h2>
+    <%- include('templates/header.ejs'); %>
+  </h2>
+
+  <h1>Fill out 2 players if 1v1, 4 players if 2v2</h1>
+
+  <form id="survey-form" method="POST" action="/submitGame" onsubmit="return checkDuplicateSelection();">
+
+    <div class="ones">
+    <div class="form-group winner">
+      <select name="winner1" class="form-control dropdown" required>
+        <option disabled selected value>Winner 1</option>
+        <% players.forEach(player => { %>
+          <option value="<%= player._id %>"><%= player.name %></option>
+        <% }); %>
+
+      </select>
+    </div>
+
+    <div class="form-group  loser">
+      <select name="loser1" class="form-control dropdown" required>
+        <option disabled selected value>Loser 1</option>
+        <% players.forEach(player => { %>
+          <option value="<%= player._id %>"><%= player.name %></option>
+        <% }); %>
+
+      </select>
+    </div>
+    </div>
+
+    <div class="dashed"></div>
+
+    <div class="twos">
+
+    <div class="form-group  winner">
+      <select name="winner2" class="form-control dropdown">
+        <option disabled selected value>Winner 2</option>
+
+        <% players.forEach(player => { %>
+          <option value="<%= player._id %>"><%= player.name %></option>
+        <% }); %>
+
+      </select>
+    </div>
+
+    <div class="form-group loser">
+      <select name="loser2" class="form-control dropdown">
+        <option disabled selected value>Loser 2</option>
+        <% players.forEach(player => { %>
+          <option value="<%= player._id %>"><%= player.name %></option>
+        <% }); %>
+      </select>
+    </div>
+
+  </div>
+
+    <div class="form-group">
+      <button type="submit" id="submit" class="submit-button">
+        Submit
+      </button>
+    </div>
+  </form>
+
+  <div class="poolballs-image">
+    <img src="/images/poolballs2.png" class="balls" height=300px width= 350px alt="ADPHI">
+  </div>
+
+  <script>
+    // Function to check for duplicate selections in the dropdowns
+    function checkDuplicateSelection() {
+      const selectedNames = [];
+      const dropdowns = document.querySelectorAll('.form-control');
+
+      for (const dropdown of dropdowns) {
+        const selectedName = dropdown.value;
+        if(!selectedName) continue;
+        if (selectedNames.includes(selectedName)) {
+          alert('Duplicate selection detected. Please choose different names.');
+          //console.log(selectedNames);
+          return false; // Prevent form submission
+        }
+        selectedNames.push(selectedName);
+      }
+
+
+      //Prevents 3 names from being submitted
+      if (selectedNames.length === 3) {
+        alert('Wrong amount of names');
+        //openCustomPopup('Invalid submission. Please select 2 or 4 names.');
+        return false; // Prevent form submission
+      }
+
+      return true; // Allow form submission
+    }
+  </script>
+
+</body>
+</html>

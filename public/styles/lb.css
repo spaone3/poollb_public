@@ -1,0 +1,140 @@
+html, body {
+  margin:0;
+  padding:0;
+}
+
+h3{
+  font-size: 20px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+  border-bottom: 5px solid black;
+
+}
+
+.lb {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Align items (rows) horizontally in the center */
+  border-bottom: 2px solid black;
+}
+
+
+.rows {
+  display: flex;
+  justify-content: space-between; /* Distribute items (name and rating) evenly along the row */
+  align-items: center; /* Vertically center items within the row */
+  width: 100%;
+}
+
+.rows {
+  display: flex;
+  border-bottom: 2px solid black;
+
+}
+
+
+.ratings {
+  display: flex;
+  align-items: center;  
+  flex: 1;
+  font-weight: 600;
+}
+
+.ratings {
+  text-align: right;
+}
+
+
+.names {
+  font-weight: 900;
+  margin-left: 30vw;
+  text-align: left; /* Align player names to the right within the flex item */
+  flex: 1;
+}
+
+
+
+
+h1 {
+  font-size: 50px;
+  margin-top: 70px;
+  margin-bottom: 0px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid black;
+
+}
+
+.categories{
+  font-size: 20px;
+}
+
+
+
+.text {
+  color: black;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.text:hover {
+  color: black;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+
+
+
+
+
+
+#previous-years {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 2px solid black;
+
+}
+
+.year {    
+  display: inline-block;
+  margin: 10px 40vw;
+  padding: 5px 20px;
+  border: 4px solid darkgray;
+  border-radius: 10px;
+
+  transition: background 0.3s, color 0.3s;
+  background: linear-gradient(to left, rgb(14, 81, 14), rgb(194, 225, 194));
+
+  text-align: center;
+  color: rgb(6, 41, 17);
+  text-decoration: none;
+  font-size: 1.2vw;
+  font-family: "Arial", sans-serif;
+  font-weight: 700;
+
+  @media (max-width: 840px) {
+      font-size: 2.2vw; /* increase font size as browser width decreases */
+      margin: 5px 20vw;
+
+  }
+
+}
+
+.year:hover {
+  background: linear-gradient(to left, rgb(21, 116, 21), rgb(205, 246, 205));
+  /*color: rgb(219, 205, 205);*/
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+  /*font-weight: 900;*/
+
+}
+
+
+.a{
+  color: black;
+
+}

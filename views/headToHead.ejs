@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Head to Head</title>
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/profile.css">
+
+</head>
+<body>
+
+  <h2>
+    <%- include('templates/header.ejs'); %>
+  </h2>
+
+  <h1 class="top">
+    Head To Head
+  </h1>
+
+  <form id="head-to-head-form" method="POST" action="/headToHead">
+    <div class="form-group winner">
+      <select name="player1" class="form-control dropdown" required>
+        <option disabled selected value>Player 1</option>
+        <% players.forEach(player => { %>
+          <option value="<%= player.name %>"><%= player.name %></option>
+        <% }); %>
+      </select>
+    </div>
+
+    <div class="form-group loser">
+      <select name="player2" class="form-control dropdown" required>
+        <option disabled selected value>Player 2</option>
+        <% players.forEach(player => { %>
+          <option value="<%= player.name %>"><%= player.name %></option>
+        <% }); %>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" id="submit" class="submit-button">
+        Submit
+      </button>
+    </div>
+  </form>
+
+  <div class="all-time-record">
+    <!-- Display the all-time record here -->
+    <% if (headToHeadRecord) { %>
+      <p>All-Time Record: <%= headToHeadRecord %> </p>
+    <% } %>
+  </div>
+
+  <div class="games">
+    <!-- Display the head-to-head games here -->
+    <% if (headToHeadGames) { %>
+      <ul>
+        <% headToHeadGames.forEach(game => { %>
+          <li><%= game %></li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </div>
+
+</body>
+</html>
